@@ -1,0 +1,11 @@
+FROM node:iron-slim
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY ./package.json ./package-lock.json ./tsconfig.json ./tsconfig.build.json ./nest-cli.json ./
+COPY ./src ./src
+
+RUN npm i --no-optional --ignore-scripts
+
+EXPOSE 3000
