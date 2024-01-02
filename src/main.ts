@@ -14,6 +14,7 @@ async function bootstrap() {
       'A NestJS Project with all the basic necessary features like Mongoose, Swagger, and Docker',
     )
     .setVersion('0.0.1')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

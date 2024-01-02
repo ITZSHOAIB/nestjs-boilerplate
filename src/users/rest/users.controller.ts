@@ -7,12 +7,14 @@ import {
   Param,
   Delete,
   HttpCode,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiBody, ApiTags } from '@nestjs/swagger';
-import { UserDto } from './dto/user.dto';
+import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
+import { GetUserDto } from './dto/get-user.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('users')
 @ApiTags('users')
@@ -25,23 +27,22 @@ export class UsersController {
     return await this.usersService.createUser(createUserDto);
   }
 
-  @Get()
-  async getAll(): Promise<UserDto[]> {
-    return await this.usersService.getAllUsers();
-  }
-
   @Get(':id')
-  async getById(@Param('id') id: string): Promise<UserDto> {
+  async getById(@Param('id') id: string): Promise<GetUserDto> {
     return await this.usersService.getUserById(id);
   }
 
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
   @Patch(':id')
   @ApiBody({ type: UpdateUserDto })
   @HttpCode(204)
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return await this.usersService.updateUser(id, updateUserDto);
+    await this.usersService.updateUser(id, updateUserDto);
   }
 
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
   @HttpCode(204)
   async delete(@Param('id') id: string) {

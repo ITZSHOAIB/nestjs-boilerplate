@@ -5,6 +5,10 @@ import { USERS_REPOSITORY } from './database/repositories/users.repository.inter
 import { UsersRepository } from './database/repositories/users.repository';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './database/schemas/user.schema';
+import {
+  USERS_AUTH_SERVICE,
+  UsersAuthService,
+} from './services/users-auth.service';
 
 @Module({
   controllers: [UsersController],
@@ -14,9 +18,11 @@ import { User, UserSchema } from './database/schemas/user.schema';
       useClass: UsersRepository,
     },
     UsersService,
+    { provide: USERS_AUTH_SERVICE, useClass: UsersAuthService },
   ],
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
   ],
+  exports: [USERS_AUTH_SERVICE],
 })
 export class UsersModule {}
