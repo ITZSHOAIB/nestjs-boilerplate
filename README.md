@@ -1,4 +1,6 @@
-# NestJS Boilerplate
+# NestJS Boilerplate with clean structure
+
+[![nestjs-boilerplate](https://github.com/ITZSHOAIB/nestjs-boilerplate/assets/48586775/bf40b508-7381-4a2c-b0f3-aba4f8f46d4d)](https://github.com/new?template_name=nestjs-boilerplate&template_owner=ITZSHOAIB)
 
 A NestJS project template for building scalable and production-ready REST APIs using [NestJS](https://nestjs.com/), a progressive Node.js framework. NestJS Boilerplate includes many features and libraries, such as:
 
