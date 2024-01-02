@@ -21,11 +21,13 @@ export class UsersService {
   }
 
   async getAllUsers(): Promise<UserDto[]> {
-    return await this.usersRepository.getAll();
+    const users = await this.usersRepository.getAll();
+    return users.map((user) => UserMapper.fromUserSchemaToUserDto(user));
   }
 
   async getUserById(id: string): Promise<UserDto> {
-    return await this.usersRepository.getById(id);
+    const user = await this.usersRepository.getById(id);
+    return UserMapper.fromUserSchemaToUserDto(user);
   }
 
   async updateUser(id: string, user: UpdateUserDto): Promise<void> {
