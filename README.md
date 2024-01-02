@@ -10,6 +10,7 @@ A NestJS project template for building scalable and production-ready REST APIs u
 - Validation using [class-validator](https://docs.nestjs.com/pipes#class-validator)
 - A Basic clean folder structure with CRUD operation to get started.
 - Testing using [Jest](https://jestjs.io/) and [Supertest](https://github.com/visionmedia/supertest)
+- Authentication and authorization using [Passport](https://github.com/jaredhanson/passport) and [JWT](https://jwt.io/)
 
 ## Getting Started
 
